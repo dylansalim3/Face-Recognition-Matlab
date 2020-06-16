@@ -12,8 +12,7 @@ cd('cifar11Train');
         display(z);
         folder_name = strcat('D:\Lectures\Semester 6\WIX 3001\Assignment\Deep Learning\DeepLearningDemos\cifar12Train\S',y);
 %         newfilename=strcat('D:\Lectures\Semester 6\WIX 3001\Assignment\Deep Learning\DeepLearningDemos\cifar12Train\S',(i),'\',(j));
-        newfilename=strcat('D:\Lectures\Semester 6\WIX 3001\Assignment\Deep Learning\DeepLearningDemos\cifar12Train\S',y,'\',z,'.jpg');
-        display(newfilename);
+        newfilename=strcat('D:\Lectures\Semester 6\WIX 3001\Assignment\Deep Learning\DeepLearningDemos\cifar12Train\S1\1.jpg');
         display(folder_name)
         if not(exist(folder_name,'dir'))
             mkdir(folder_name);
