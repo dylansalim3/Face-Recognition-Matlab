@@ -14,16 +14,6 @@ end
  % Resize the images to the input size of the net
  im.ReadFcn = @(loc)imresize(imread(loc),[227,227]);
  [Train ,Test] = splitEachLabel(im,0.8,'randomized');
-%  fc = fullyConnectedLayer(n);
-%  net = alexnet;
-%  ly = net.Layers;
-%  ly(23) = fc;
-%  cl = classificationLayer;
-%  ly(25) = cl; 
-%  % options for training the net if your newnet performance is low decrease
-%  % the learning_rate
-%  learning_rate = 0.01;
-%  opts = trainingOptions("rmsprop","InitialLearnRate",learning_rate,'MaxEpochs',10,'MiniBatchSize',64,'Plots','training-progress');
 
  %  Test Layer
 varSize = 227;
@@ -78,20 +68,21 @@ opts = trainingOptions('sgdm', ...
  fprintf('The accuracy of the test set is %f %% \n',acc*100);
 % Test a new Image
 % use code below with giving path to your new image
- img = imread('test_photo\img_3.jpg');
+ img = imread('test_photo\img_1.jpg');
  [img,face] = cropface(img);
  % face value is 1 when it detects face in image or 0
  if face == 1
    img = imresize(img,[227 227]);
    predict = classify(newnet,img);
  end
- nameofs01 = 'subject 1';
- nameofs02 = 'subject 2';
- nameofs03 = 'subject 3';
- nameofs04 = 'subject 4';
+ nameofs01 = 'Dylan';
+ nameofs02 = 'Fatin';
+ nameofs03 = 'Yvonne';
+ nameofs04 = 'Syafiq';
  if predict=='s01'
    fprintf('The face detected is %s',nameofs01);
- elseif  predict=='s02'%   fprintf('The face detected is %s',nameofs02);
+ elseif  predict=='s02'   
+     fprintf('The face detected is %s',nameofs02);
  elseif  predict=='s03'
    fprintf('The face detected is %s',nameofs03);
  elseif  predict=='s04'
