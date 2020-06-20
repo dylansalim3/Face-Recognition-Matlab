@@ -28,12 +28,13 @@ end
  %  Test Layer
 varSize = 227;
 conv1 = convolution2dLayer(5,varSize,'Padding',2,'BiasLearnRateFactor',2);
-conv1.Weights = gpuArray(single(randn([5 5 3 varSize])*0.0001));
+% conv1.Weights = gpuArray(single(randn([5 5 3 varSize])*0.0001));
 fc1 = fullyConnectedLayer(64,'BiasLearnRateFactor',2,'WeightLearnRateFactor',10);
 % fc1.Weights = gpuArray(single(randn([64 576])*0.1));
 fc2 = fullyConnectedLayer(4,'BiasLearnRateFactor',2,'WeightLearnRateFactor',10);
 % fc2.Weights = gpuArray(single(randn([4 64])*0.1));
 
+%RGB Image so the varsize is 3
 layers = [
     imageInputLayer([varSize varSize 3]);
     conv1;
@@ -77,16 +78,19 @@ opts = trainingOptions('sgdm', ...
  % face value is 1 when it detects face in image or 0
  if face == 1
    img = imresize(img,[227 227]);
-   predict = classify(newnet,img)
+   predict = classify(newnet,img);
  end
- nameofs01 = 'name of subject 1';
- nameofs02 = 'name of subject 2';
- nameofs03 = 'name of subject 3';
+ nameofs01 = 'subject 1';
+ nameofs02 = 'subject 2';
+ nameofs03 = 'subject 3';
+ nameofs04 = 'subject 4';
  if predict=='s01'
    fprintf('The face detected is %s',nameofs01);
  elseif  predict=='s02'%   fprintf('The face detected is %s',nameofs02);
  elseif  predict=='s03'
    fprintf('The face detected is %s',nameofs03);
+ elseif  predict=='s04'
+     fprintf('The face detected is %s',nameofs04);
  end	 
  [predict,score] = classify(newnet,img)
  fprintf('predict %s\n',predict);
