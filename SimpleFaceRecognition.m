@@ -37,17 +37,22 @@ fc2 = fullyConnectedLayer(4,'BiasLearnRateFactor',2,'WeightLearnRateFactor',10);
 %RGB Image so the varsize is 3
 layers = [
     imageInputLayer([varSize varSize 3]);
+    
     conv1;
     maxPooling2dLayer(3,'Stride',2);
     reluLayer();
+    
     convolution2dLayer(5,227,'Padding',2,'BiasLearnRateFactor',2);
     reluLayer();
     averagePooling2dLayer(3,'Stride',2);
+    
     convolution2dLayer(5,64,'Padding',2,'BiasLearnRateFactor',2);
     reluLayer();
     averagePooling2dLayer(3,'Stride',2);
+    
     fc1;
     reluLayer();
+    
     fc2;
     softmaxLayer()
     classificationLayer()];
@@ -59,7 +64,7 @@ opts = trainingOptions('sgdm', ...
     'LearnRateDropPeriod', 8, ...
     'L2Regularization', 0.004, ...
     'MaxEpochs', 7, ...
-    'MiniBatchSize', 100, ...
+    'MiniBatchSize', 10, ...
     'Plots','training-progress', ...
     'Verbose', true);
 % Test later end
