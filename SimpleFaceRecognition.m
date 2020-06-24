@@ -25,7 +25,7 @@ conv1 = convolution2dLayer(5,varSize,'Padding',2,'BiasLearnRateFactor',2);
 fc1 = fullyConnectedLayer(64,'BiasLearnRateFactor',2,'WeightLearnRateFactor',10);
 % fc1.Weights = gpuArray(single(randn([64 576])*0.1));
 fc2 = fullyConnectedLayer(5,'BiasLearnRateFactor',2,'WeightLearnRateFactor',10);
-% fc2.Weights = gpuArray(single(randn([4 64])*0.1));
+% fc2.Weights = gpuArray(single(randn([5 64])*0.1));
 
 %RGB Image so the varsize is 3
 layers = [
@@ -43,6 +43,10 @@ layers = [
     reluLayer();
     averagePooling2dLayer(3,'Stride',2);
     
+    convolution2dLayer(5,128,'Padding',2,'BiasLearnRateFactor',2);
+    reluLayer();
+    averagePooling2dLayer(3,'Stride',2);
+    
     convolution2dLayer(5,64,'Padding',2,'BiasLearnRateFactor',2);
     reluLayer();
     averagePooling2dLayer(3,'Stride',2);
@@ -55,7 +59,7 @@ layers = [
     classificationLayer()];
 
 opts = trainingOptions('sgdm', ...
-    'InitialLearnRate', 0.0001, ...
+    'InitialLearnRate', 0.0005, ...
     'LearnRateSchedule', 'piecewise', ...
     'LearnRateDropFactor', 0.1, ...
     'LearnRateDropPeriod', 8, ...
