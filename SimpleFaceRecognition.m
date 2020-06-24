@@ -39,6 +39,10 @@ layers = [
     reluLayer();
     averagePooling2dLayer(3,'Stride',2);
     
+    convolution2dLayer(5,227,'Padding',2,'BiasLearnRateFactor',2);
+    reluLayer();
+    averagePooling2dLayer(3,'Stride',2);
+    
     convolution2dLayer(5,64,'Padding',2,'BiasLearnRateFactor',2);
     reluLayer();
     averagePooling2dLayer(3,'Stride',2);
