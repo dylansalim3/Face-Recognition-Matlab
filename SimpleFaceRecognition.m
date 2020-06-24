@@ -1,3 +1,6 @@
+% This is the main class of the program
+
+
 % n is the number of subjects
 n = 5;
 % You can press stop button manually on tranining plot(on top right corner besides number of iterations) once accuracy reaches upto desired level
