@@ -1,4 +1,4 @@
-# This is a soft com project
+# WIX 3001 SOFT COMPUTING FACE RECOGNITION PROJECT (GROUP YVONNE)
 
 ## Quick Start Guide
 Prerequisites:
