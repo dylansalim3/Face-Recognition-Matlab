@@ -21,11 +21,11 @@ end
  %  Test Layer
 varSize = 227;
 conv1 = convolution2dLayer(5,varSize,'Padding',2,'BiasLearnRateFactor',2);
-% conv1.Weights = gpuArray(single(randn([5 5 3 varSize])*0.0001));
+
 fc1 = fullyConnectedLayer(64,'BiasLearnRateFactor',2,'WeightLearnRateFactor',10);
-% fc1.Weights = gpuArray(single(randn([64 576])*0.1));
+
 fc2 = fullyConnectedLayer(5,'BiasLearnRateFactor',2,'WeightLearnRateFactor',10);
-% fc2.Weights = gpuArray(single(randn([5 64])*0.1));
+
 
 %RGB Image so the varsize is 3
 layers = [
@@ -68,7 +68,7 @@ opts = trainingOptions('sgdm', ...
     'MiniBatchSize', 10, ...
     'Plots','training-progress', ...
     'Verbose', true);
-% Test later end
+
 
  [newnet,info] = trainNetwork(Train, layers, opts);
  [predict,scores] = classify(newnet,Test);
