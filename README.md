@@ -1,4 +1,4 @@
-# WIX 3001 SOFT COMPUTING FACE RECOGNITION PROJECT (GROUP YVONNE)
+# WIX3001 Soft Computing Face Recognition Project (Group Yvonne)
 
 ## Quick Start Guide
 Prerequisites:
