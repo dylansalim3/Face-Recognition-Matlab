@@ -2,9 +2,10 @@
 
 ## Quick Start Guide
 Prerequisites:
-- Matlab
-- Matlab Computer Vision Toolbox
-- Matlab Deep Learning Toolbox
+- MATLAB
+- MATLAB Computer Vision Toolbox
+- MATLAB Deep Learning Toolbox
+- MATLAB Image Processing Toolbox
 
 To run the app, click on the run button on the SimpleFaceRecognition.m file in Matlab
 
