@@ -1,5 +1,5 @@
 % n is the number of subjects
-n = 4;
+n = 5;
 % You can press stop button manually on tranining plot(on top right corner besides number of iterations) once accuracy reaches upto desired level
 
 % looping through all subjects and cropping faces if found
@@ -21,7 +21,7 @@ conv1 = convolution2dLayer(5,varSize,'Padding',2,'BiasLearnRateFactor',2);
 % conv1.Weights = gpuArray(single(randn([5 5 3 varSize])*0.0001));
 fc1 = fullyConnectedLayer(64,'BiasLearnRateFactor',2,'WeightLearnRateFactor',10);
 % fc1.Weights = gpuArray(single(randn([64 576])*0.1));
-fc2 = fullyConnectedLayer(4,'BiasLearnRateFactor',2,'WeightLearnRateFactor',10);
+fc2 = fullyConnectedLayer(5,'BiasLearnRateFactor',2,'WeightLearnRateFactor',10);
 % fc2.Weights = gpuArray(single(randn([4 64])*0.1));
 
 %RGB Image so the varsize is 3
@@ -53,7 +53,7 @@ opts = trainingOptions('sgdm', ...
     'LearnRateDropFactor', 0.1, ...
     'LearnRateDropPeriod', 8, ...
     'L2Regularization', 0.004, ...
-    'MaxEpochs', 7, ...
+    'MaxEpochs', 10, ...
     'MiniBatchSize', 10, ...
     'Plots','training-progress', ...
     'Verbose', true);
@@ -66,28 +66,6 @@ opts = trainingOptions('sgdm', ...
  s = size(pred);
  acc = sum(pred)/s(1);
  fprintf('The accuracy of the test set is %f %% \n',acc*100);
-% Test a new Image
-% use code below with giving path to your new image
- img = imread('test_photo\img_1.jpg');
- [img,face] = cropface(img);
- % face value is 1 when it detects face in image or 0
- if face == 1
-   img = imresize(img,[227 227]);
-   predict = classify(newnet,img);
- end
- nameofs01 = 'Dylan';
- nameofs02 = 'Fatin';
- nameofs03 = 'Yvonne';
- nameofs04 = 'Syafiq';
- if predict=='s01'
-   fprintf('The face detected is %s',nameofs01);
- elseif  predict=='s02'   
-     fprintf('The face detected is %s',nameofs02);
- elseif  predict=='s03'
-   fprintf('The face detected is %s',nameofs03);
- elseif  predict=='s04'
-     fprintf('The face detected is %s',nameofs04);
- end	 
- [predict,score] = classify(newnet,img)
- fprintf('predict %s\n',predict);
- fprintf('score is %d\n',score);
+
+ app = app1;
+ app.setNewnet(newnet, acc * 100);
